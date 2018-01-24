@@ -1,0 +1,117 @@
+<div>
+    <h1>Phone detail</h1>
+</div>
+
+
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="row" style="margin-top: 120px;">
+            <div class="col-xs-3">
+
+                <button md-raised-button class="mat-primary" routerLink="/phones">
+                   Back to the phones list
+                </button>
+
+                <hr>
+                <br />
+                <img class="img-responsive" src="../../assets/images/{{phone.image}}.jpg" />
+            </div>
+            <div class="col-xs-9">
+                <!-- <h3>
+                    <span *ngIf="addPhoneSuccess" style="color:forestgreen">
+                        <i class="fa fa-check" style="color:forestgreen"></i>Ajouté au Panier.</span>
+                </h3> -->
+                <h3>
+                    <span *ngIf="notEnoughStock" style="color:red">Oops, only
+                        <span>{{phone.inStockNumber}}</span> In Stock.</span>
+                </h3>
+                <h3>{{phone.brand}}</h3>
+                <div class="row">
+                    <div class="col-xs-5">
+                        <h5>
+                            <strong>Marque: </strong>
+                            <span>{{phone.name}}</span>
+                        </h5>
+                        <p>
+                            <strong>category:</strong>
+                            <span>{{phone.category}}</span>
+                        </p>
+                        <p>
+                            <strong>Taille ecran:</strong>
+                            <span>{{phone.displaysize}}</span>
+                        </p>
+                        <p>
+                            <strong>Resolution de l'ecran:</strong>
+                            <span>{{phone.display_resolution}}</span>
+                        </p>
+                        <p>
+                            <strong>Ram:</strong>
+                            <span>{{phone.ram}}</span>
+                        </p>
+                        <p>
+                            <strong>Battery:</strong>
+                            <span>{{phone.Battery}}</span>
+                        </p>
+
+                    </div>
+                    <div class="col-xs-7">
+
+                        <h3>
+                            <span *ngIf="addPhoneSuccess" style="color:forestgreen">
+                                <i class="fa fa-check" style="color:forestgreen"></i>Added.</span>
+                        </h3>
+
+                        <div class="panel panel-default" style="border-width:5px; margin-top:20px;">
+                            <div class="panel-body">
+                                <div class="col-xs-6">
+                                    <h4>Our price:
+                                        <span style="color: #db3208;">€
+                                            <span>
+                                                {{phone.price | number : '1.2-2'}}
+                                            </span>
+                                        </span>
+                                    </h4>
+                                    <p>Price:
+                                        <span style="text-decoration:line-through;">€
+                                            <span>{{phone.priceSansRemise | number : '1.2-2'}}</span>
+                                        </span>
+                                    </p>
+                                    <p>You economise: €
+                                        <span>{{phone.priceSansRemise-phone.price | number : '1.2-2'}}</span>
+                                    </p>
+                                    <span>Qty: </span>
+                                    <select [(ngModel)]="qty" class="browser-default" style="display:inline;">
+                                        <option *ngFor="let x of numberList" [ngValue]="x">{{x}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-6">
+                                    <h4 *ngIf="phone.inStockNumber>10" style="color:green;">In Stock</h4>
+                                    <h4 *ngIf="phone.inStockNumber<10 && phone.inStockNumber>0" style="color:green;">Only
+                                        <span>{{phone.inStockNumber}}</span> In Stock</h4>
+                                    <h4 *ngIf="phone.inStockNumber==0" style="color:darkred;">Non disponible</h4>
+
+                                    <h4 *ngIf="qty > phone.inStockNumber" style="color:darkred;">Stock Insuffisant</h4>
+
+                                    <button md-raised-button 
+                                        [disabled]="(phone.inStockNumber==0) || (qty > phone.inStockNumber)" 
+                                        (click)="onAddToCart()" 
+                                        class="mat-primary">Add to cart
+                                    </button>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+            <p>{{phone.description}}</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,116 @@
+<div class="jumbotron text-center">
+    <h1>Shopping - Cart</h1>
+</div>
+
+<div class="container">
+
+
+    <div class="row" style="margin-top: 120px;">
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="col-xs-6 text-left">
+                    <a md-raised-button class="mat-warn" routerLink="/phones">Continue Shopping</a>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <a md-raised-button class="mat-warn" routerLink="/phones">Check Out</a>
+                </div>
+            </div>
+            <br/>
+
+            <div *ngIf="cartItemUpdated" class="alert alert-success">
+                Cart Item Updated Successfully!
+            </div>
+
+            <div *ngIf="notEnoughStock" class="alert alert-warning">
+                Oops, des produits ne sont pas en quantité suffisante en stock.
+            </div>
+
+            <div *ngIf="emptyCart" class="alert alert-warning">
+                Oops, ton cart est vide.
+            </div>
+
+            <div class="row">
+                <div class="col-xs-8">
+                    <h4>Produits</h4>
+                </div>
+                <div class="col-xs-2">
+                    <h4>Prix</h4>
+                </div>
+                <div class="col-xs-2">
+                    <h4>Qty</h4>
+                </div>
+            </div>
+
+
+            <div class="row" *ngFor="let cartItem of cartItemList">
+                <hr/>
+
+                <div class="col-xs-2">
+                    <a md-button (click)="onSelect(cartItem.phone)">
+                        <img class="img-responsive" src="../../assets/images/{{cartItem.phone.image}}.jpg" style="width:70px;" />
+                    </a>
+                </div>
+
+                <div class="col-xs-6">
+                    <a class="pointer" (click)="onSelect(cartItem.phone)">
+
+
+                        <h4>{{cartItem.phone.brand}} &nbsp; {{cartItem.phone.name}}</h4>
+                    </a>
+
+
+                    <p *ngIf="cartItem.phone.inStockNumber > 10" style="color:green;">In Stock</p>
+
+                    <p *ngIf="cartItem.phone.inStockNumber < 10 && cartItem.phone.inStockNumber > 0" style="color:green;">Only
+                        <span>{{cartItem.phone.inStockNumber}}</span> In Stock
+                    </p>
+
+                    <p *ngIf="cartItem.phone.inStockNumber == 0" style="color:darkred;">Product Unavailable</p>
+
+                    <a class="pointer" (click)="onRemoveCartItem(cartItem)">delete</a>
+                </div>
+
+                <div class="col-xs-2">
+
+                    <h5 style="color:#db3208; font-size:large;"> $
+                        <span [ngClass]="{'text-strike': cartItem.phone.inStockNumber == 0}">
+                            {{cartItem.phone.price}}
+                        </span>
+                    </h5>
+
+                </div>
+
+                <div class="col-xs-2">
+
+                    <input hidden="hidden" name="id" [(ngModel)]="cartItem.id" />
+
+                    <input id="cartItem.id" name="qty" [disabled]="cartItem.phone.inStockNumber==0" class="form-control cartItemQty" [(ngModel)]="cartItem.qty"
+                        (ngModelChange)="cartItem.toUpdate=true" />
+
+                    <a md-button *ngIf="cartItem.toUpdate" class="pointer mat-warn" (click)="onUpdateCartItem(cartItem)"> Update
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <hr />
+                <h4 class="col-xs-12 text-right">
+                    <strong style="font-size: large">
+                        Prix Totale (
+                        <span>{{cartItemNumber}}</span> articles):
+                    </strong>
+                    <span style="color:#db3208; font-size: large">
+                        €
+                        <span>{{shoppingCart.grandTotal}}</span>
+                    </span>
+                </h4>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

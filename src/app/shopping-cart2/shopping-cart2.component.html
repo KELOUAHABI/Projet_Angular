@@ -1,0 +1,100 @@
+
+
+<div class="jumbotron text-center">
+    <h1>Shopping - Cart</h1>
+</div>
+
+<div class="container">
+
+
+    <div class="row" style="margin-top: 120px;">
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="col-xs-6 text-left">
+                    <a md-raised-button class="mat-warn" routerLink="/phones">Continue Shopping</a>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <a md-raised-button class="mat-warn" routerLink="/checkOut">Check Out</a>
+                </div>
+            </div>
+            <br/>
+
+
+            <div class="row">
+                <div class="col-xs-6">
+                    <h4>Products</h4>
+                </div>
+                <div class="col-xs-2">
+                    <h4>Price</h4>
+                </div>
+                <div class="col-xs-2">
+                    <h4>Qty</h4>
+                </div>
+                <div class="col-xs-2">
+                    <h4>Total</h4>
+                </div>
+            </div>
+
+
+            <div class="row" *ngFor="let cartItem of products">
+                <hr/>
+
+
+                <div class="col-xs-6">
+                   
+                  <h4>
+                    <button (click)="deleteItem(cartItem.id)">x</button>  
+                    &nbsp; &nbsp;{{cartItem.brand}} &nbsp;&nbsp; {{cartItem.name}} 
+                  </h4>
+                    
+                </div>
+
+                <div class="col-xs-2">
+
+                    <h5 style="color:#db3208; font-size:large;"> $
+                        <span >
+                            {{cartItem.price}}
+                        </span>
+                    </h5>
+
+                </div>
+
+                <div class="col-xs-2">
+                    <div class="col-xs-6">
+                        <a>
+                            <h4>{{cartItem.qty}} </h4>
+                        </a>  
+                    </div>                
+                </div>
+
+                <div class="col-xs-2">
+                    <div class="col-xs-6">
+                        <a>
+                            <h4>{{cartItem.subtotal}} </h4>
+                        </a>  
+                    </div>                
+                </div>
+               
+
+            </div>
+
+
+            <div class="row">
+                
+                <h4 class="col-xs-12 text-right">
+                        <hr />
+                    <strong style="font-size: large">
+                  Total Price : &nbsp;
+                    </strong>
+                    <span style="color:#db3208; font-size: large">
+                        {{getTotalPrice()}} &nbsp;€
+                        <span> Total price </span>
+                    </span>
+                </h4>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

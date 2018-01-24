@@ -1,0 +1,69 @@
+
+
+<div class="navbar navbar-inverse navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" routerLink="/home"><span><i class="fa fa-fw fa-envira"></i>&nbsp; Shop-Angels</span></a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+
+      <ul class="nav navbar-left navbar-nav">
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" >
+          <!-- <a href="/home">Home</a> -->
+          <a routerLink="/home">Home</a>
+        </li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <!-- <a href="/phones"> Téléphones </a> -->
+          <a routerLink="/phones">Phones</a>
+        </li>                    
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <!-- <li class="active">
+          <a href="/cart"><span class="glyphicon glyphicon-shopping-cart"></span>Cart&nbsp;&nbsp;<span class="badge">0</span></a>
+        </li> -->
+
+          <!-- <form (ngSubmit)="onSearcyByTitle()" class="navbar-form">
+              <div class="form-group">
+                <input type="text" name="searcyByTitle" [(ngModel)]="keyboard" class="form-control" placeholder="Phone Search" />
+              </div>
+              <button type="submit" class="btn btn-default">Search</button>
+          </form>     
+        
+        -->
+
+        <li *ngIf="loggedIn()" >
+          <a md-button >{{userName}}</a>
+        </li>
+
+        <li *ngIf="loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">    
+            <a md-button routerLink="/cart">Shopping-Cart&nbsp;<span class="badge badge-warning badge-pill"></span></a>
+        </li>
+
+
+        <!-- <li *ngIf="loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <a md-button routerLink="/myProfile">MY PROFILE</a>
+        </li> -->
+        <li *ngIf="!loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">                
+          <!-- <a md-button (click)="isLoggedIn()">MY ACCOUNT</a> -->
+          <a md-button routerLink="/register">Register</a>
+        </li>
+        <li *ngIf="!loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <a md-button routerLink="/login" >Login</a>
+        </li>
+       
+        <li *ngIf="loggedIn()"><a md-button (click)="onLogoutClick()">LOGOUT</a>
+        </li>
+
+      </ul>  
+
+    </div>
+  </div>
+</div>

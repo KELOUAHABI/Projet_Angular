@@ -1,0 +1,83 @@
+
+<div class="jumbotron text-center">
+  <h1>Check-Out...</h1>
+</div>
+
+
+<div class="col-xs-3">
+
+</div>
+
+<div class="col-xs-6">
+
+
+  <form (submit)="onOrdreSubmit()">
+
+    <div class="form-group">
+      <label for="nom">* Name</label>
+      <input type="text" class="form-control" id="nom"  name="nom" [value]="user.name"
+        [(ngModel)]="nom" />
+    </div>
+
+
+    <div class="form-group">
+      <label>* Phone</label>
+      <input type="phone" [(ngModel)]="phone" [value]="user.phone" name="phone" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="adresse">* Adress</label>
+      <input type="text" class="form-control" id="adresse" [value]="user.adresse" name="adresse"
+        [(ngModel)]="adresse" />
+    </div>
+
+
+    <div class="col-xs-4">
+      <div class="form-group">
+        <label for="ville">* City</label>
+        <input type="text" class="form-control" id="ville" [value]="user.ville" name="ville" [(ngModel)]="ville"
+        />
+      </div>
+    </div>
+
+    <div class="col-xs-4">
+      <div class="form-group">
+        <label for="departement">* Department</label>
+        <input type="text" class="form-control" id="departement" [value]="user.departement" name="departement" [(ngModel)]="departement"
+        />
+      </div>
+    </div>
+
+    <div class="col-xs-4">
+      <div class="form-group">
+        <label for="zipcode">* Postal code</label>
+        <input type="text" class="form-control" id="zipcode" [value]="user.zipcode" name="zipcode" [(ngModel)]="zipcode"
+        />
+      </div>
+    </div>
+
+    <!-- <div class="col-xs-4 ">
+      <div class="form-group ">
+        <label for="departement">* Département</label>
+        <select id="departement" class="form-control" [value]="user.departement" name="departement" [(ngModel)]="departement">
+          <option value="" disabled> département  </option>
+          <option *ngFor="let state of stateList">{{state}}
+          </option>
+        </select>
+      </div>
+    </div> -->
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <button md-raised-button type="submit " class="btn-block mat-primary">Validate my command
+    </button>
+
+
+  </form>
+</div>
+
+<div class="col-xs-3"></div>

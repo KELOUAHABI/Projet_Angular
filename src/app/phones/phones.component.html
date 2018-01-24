@@ -1,0 +1,95 @@
+<h1>
+    Phones
+</h1>
+
+
+<div class="col-md-2">
+    <form id="filter">
+        <br/>
+        <label>Search:</label>
+        <!--<input type="text" [(ngModel)]="search" name="search" />-->
+        <br/>
+        <br/>
+
+        <!-- <ul class="list-group">
+            <li class="list-group-item" *ngFor="let cat of categories" (click)="filterBy('cat')">{{cat}}</li>
+        </ul> -->
+
+        <ul class="list-group">
+            <li class="list-group-item"><a (click)="filterBy('All')">All</a></li>
+            <li class="list-group-item"><a (click)="filterBy('Apple')">Apple</a></li>
+            <li class="list-group-item"><a (click)="filterBy('Samsung')">Samsung</a></li>
+            <li class="list-group-item"><a (click)="filterBy('Huawei')">Huawei</a></li>
+            <li class="list-group-item"><a (click)="filterBy('Xiaomi')">Xiaomi</a></li>
+        </ul>
+
+        <!-- <br/>
+        <p>
+        0
+            <input type="range" min="0" max="2000" 
+                [value]="sliderValue" 
+                (input)="sliderValue = $event.target.value" />
+        2000
+        </p>
+        <span>{{ sliderValue }}</span> -->
+
+
+
+    </form>
+</div>
+
+
+<div class="col-md-10">
+    <div class="container">
+
+
+        <div class="container">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+
+        <div class="container">
+
+            <!-- ngFor -->
+
+            <!-- itemsPerPage: ???  nombre d items par page-->
+            <!-- | pricePipe:sliderValue -->
+
+            <div *ngFor="let phone of phones | filter: search | paginate: { itemsPerPage: 8, currentPage: p  }" class="col-md-3">
+
+                <div class="thumbnail">
+
+                    <img class="card-img-top" src="../../assets/images/{{ phone.image }}.jpg" alt="">
+
+                    <div class="caption">
+
+                        <div *ngIf="!phone.showDetails">
+                            <h4>
+                                <span class="label label-primary">
+                                    {{phone.brand}}&nbsp;-&nbsp;{{phone.name}}
+                                </span>
+                            </h4>
+                            <h3>
+                                <i class="glyphicon glyphicon-tag"></i>
+                                {{ phone.price | currency:'EUR':true }}
+                            </h3>
+                            <h4>
+                                <i class="glyphicon glyphicon-phone"></i>
+                                {{ phone.displaysize }}"
+                            </h4>
+
+                            <div class="container-fluid">
+                                <button class="btn btn-sm btn-primary btn-block" (click)="onSelect(phone)">
+                                    Details
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
